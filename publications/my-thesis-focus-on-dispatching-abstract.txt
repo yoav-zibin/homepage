@@ -1,0 +1,15 @@
+The object oriented (OO) paradigm has become the norm for software development. OO languages, such as C++, JAVA, EIFFEL, and SMALLTALK, are used in almost every software project. The OO programming style, and the languages that enable it, have acquired an aura of respectability. OO programming promotes reusability, extendibility, reliability, and portability. All these blessings come however at a cost of runtime efficiency. Better understanding of this cost, and finding ways to reduce it, were the subject of my thesis.
+
+In this talk, I will focus on the dispatching problem with the following three variants:
+a) Single vs. Multiple Inheritance
+b) Statically vs. Dynamically typed languages
+c) Batch vs. Incremental (i.e., does the language supports dynamic class loading)
+I will present two novel algorithms for solving the dispatching problem:
+1) A fast algorithm for creating space efficient dispatching tables, with a logarithmic dispatching time (on average 3 branches in our data-set).
+The paper was published in OOPSLA'02.
+2) A constant time dispatching technique with a (proven) tradeoff between the number of dereferencing steps and the memory requirements. The technique has an incremental variant in the single inheritance, dynamically typed, incremental setting, which makes it applicable for languages such as Smalltalk and Java. (If one does not use static-type information in Java then in fact it becomes a single inheritance language).
+
+The slides are available at:
+http://www.zibin.net/publications/my-thesis-focus-on-dispatching.ppt
+Both papers can be found in my website.
+

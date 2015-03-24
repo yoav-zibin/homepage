@@ -1,0 +1,53 @@
+<html>
+<head>
+</head>
+<body>
+
+<center>
+<h1>
+The formats of our benchmarks
+</h1>
+</center>
+
+The format include the <i>type-hierarchy</i> structure, i.e.,
+	the name of types and the inheritance links connecting them.
+The dispatching benchmarks also include the names of <i>messages</i>.
+A message is the unique identifier for a set of types 
+	which declared a <i>method implementation</i> for that message.
+This set of types is called a <i>method family</i>.
+
+<br>
+
+<OL>
+<li><b>COU</b><br>
+	This is a lisp like format.
+	Lines starting with a comma (;) are comments.
+	The file has the following structure:<br>
+	
+	<br><font face="courier">
+	(<br>
+	(type-name (list-of-direct-parents) (list-of-attributes) (list-of-methods))<br>
+	...<br>
+	)<br>
+	</font><br>
+	
+<li><b>COMPACT</b><br>
+	This file has an <i>easy to process</i> format.
+	Each type/message is given a zero-based ID, 
+		which is its relative position compared to the other types.<br>
+	The file has the following structure:<br>
+	
+	<br><font face="courier">
+	number-of-types<br>
+	type-name  number-of-direct-parents<br>
+	list-of-direct-parents-IDs<br>
+	...<br>
+	number-of-messages<br>
+	message-name  size-of-method-family<br>
+	list-of-family-members-IDs<br>
+	...<br>
+	</font><br>
+</OL>
+
+</body>
+</html>

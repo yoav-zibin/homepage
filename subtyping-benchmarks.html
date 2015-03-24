@@ -1,0 +1,66 @@
+<html>
+<head>
+<script language='JavaScript'>
+function assignDIV(arr,divElem) {
+	for(var i=0; i<arr.length; i++)
+		//arr[i] = "<li><a href='" + arr[i] + "'>" + arr[i] + "</a>";
+		arr[i] = "<li><SPAN style='background-color: #FFFF00'>" + arr[i] + "</SPAN>";
+	divElem.innerHTML = arr.join("\n");
+}
+
+//"jd13_se.inh","jd13_javastudio1.inh",
+var inhD = new Array("IDL.inh","LAU.inh","UNI.inh","JAV.inh","SLF.inh","ED.inh","LOV.inh","EIF.inh","GEO.inh","multi-schema_cecil.inh","java1.18-1704.inh","java.1.22-4339.inh","java.1.30-5438.inh");
+var inh2D = new Array("java1.18-1704.inh2","java.1.22-4339.inh2","java.1.30-5438.inh2");
+</script>
+</head>
+<body onLoad="assignDIV(inhD,inh); assignDIV(inh2D,inh2);" >
+
+<center>
+<h2>Subtyping Tests (or Type Inclusion) Benchmarks</h2>
+<b>Created by <A href="mailto:yoav@zibin.net">Yoav Zibin</a> and
+	<A href="mailto:yogi@cs.technion.ac.il">Yossi Gil</a></b>
+</center>
+<br>
+
+<A href="dispatch-benchmarks.html">Single Dispatching Benchmarks</a><br>
+
+All subtyping benchmarks in <A href="COU-subtyping-benchmarks.zip">COU</A>/<A href="COMPACT-subtyping-benchmarks.zip">COMPACT</A> format,
+click <A href="benchmarks-format.html">here</A> for format explanations<br>
+
+
+<h3>The benchmarks</h3>
+<UL>
+	<li>
+
+	Taken from <A href="mailto:natalie@cs.technion.ac.il">Natalie Eckel</a> and
+	<A href="http://www.complang.tuwien.ac.at/andi/typecheck/"><i>Efficient Type Inclusion Tests</i></a>
+		by <A href="mailto:andi@mips.complang.tuwien.ac.at">A. Krall</a>
+		and <A href="mailto:jv@cs.purdue.edu">Jan Vitek</a> and R. Nigel Horspool<br>
+		
+	Also used in:
+	<i>Empirical Study of Object-Layout Strategies and Optimization Techniques</i>
+		by <A href="mailto:natalie@cs.technion.ac.il">Natalie Eckel</a> 
+		and <A href="mailto:yogi@cs.technion.ac.il">Yossi Gil</a><br>
+
+	multi-schema_cecil.inh was created from a dispatching benchmark.<br>
+	<!-- jd13_se.inh and jd13_javastudio1.inh were created by <A href="mailto:jv@cs.purdue.edu">Jan Vitek</a><br> -->
+		<OL>
+			<div ID='inh'></div>
+		</OL>
+	<li>
+		By <A href="mailto:jv@cs.purdue.edu">Jan Vitek</a><br>
+		He used a format specific for Java (with Interfaces and Classes).
+		The exact same hierarchies also appear in *.inh format.<br>
+		<OL>
+			<div ID='inh2'></div>
+		</OL></li>
+	
+</UL>
+
+PQ Tree implementation taken from <a href="http://www.mpi-sb.mpg.de/AGD/">AGD</a>,
+	written by <a href="mailto:leipert@caesar.de">Sebastian Leipert</a>
+	(see documentation <a href="http://www.zpr.uni-koeln.de/~paper/paper.php3?paper=259">here</a>)<br>
+
+
+</body>
+</html>

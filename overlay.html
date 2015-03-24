@@ -1,0 +1,65 @@
+<html>
+<head>
+</head>
+
+<body>
+
+<div id="divElement">OVERLAY</div>
+
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+if (!window.console) console = {};
+console.log = console.log || function(){};
+
+
+  var inventoryName = window.location.search.substring(1);
+  
+  google.setOnLoadCallback(onSdkLoaded);
+  google.load("ima", "1");
+
+  var adsManager;
+  var adsLoader;
+  
+  function onSdkLoaded() {
+    // Create an ads loader instance.
+    adsLoader = new google.ima.AdsLoader();
+    // Listen and respond to ads loaded and error events.
+    adsLoader.addEventListener(
+        google.ima.AdsLoadedEvent.Type.ADS_LOADED,
+        onAdsLoaded,
+        false);
+    adsLoader.addEventListener(
+        google.ima.AdErrorEvent.Type.AD_ERROR,
+        onError,
+        false);
+    // Request overlay ads.
+    adsLoader.requestAds({adTagUrl: "http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F5251606%2F"+inventoryName+"&ciu_szs=&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=[referrer_url]&correlator=[timestamp]",
+                          adType: 'overlay'});
+  }
+  
+  function onError(event) {
+    window.alert('onError='+event);
+    console.log(event);
+  }
+  function onAdError(event) {
+    window.alert('onAdError='+event);
+    console.log(event);
+  }
+
+  function onAdsLoaded(adsLoadedEvent) {
+    // Get the overlay ads manager.
+    adsManager = adsLoadedEvent.getAdsManager();
+    adsManager.addEventListener(google.ima.AdErrorEvent.Type.AD_ERROR, onAdError);
+    // Set the ad slot size.
+    adsManager.setAdSlotWidth(640);
+    adsManager.setAdSlotHeight(480);
+    // Set Alignment
+    adsManager.setHorizontalAlignment(google.ima.AdSlotAlignment.HorizontalAlignment.CENTER);
+    adsManager.setVerticalAlignment(google.ima.AdSlotAlignment.VerticalAlignment.BOTTOM);
+    adsManager.play(divElement);
+  }
+</script>
+
+
+</body>
+</html>

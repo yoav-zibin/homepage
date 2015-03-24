@@ -1,0 +1,41 @@
+<html>
+<head>
+</head>
+
+<body>
+<script>
+var arr = [
+'HostedVideo',
+'3rdPartyVideo',
+'HostedImageOverlay',
+'3rdPartyImageOverlay',
+'LinearAndNonLinearVastRedirect',
+'LinearVastRedirect',
+'NonLinearVastRedirect',
+'HostedFlashOverlay',
+'3rdPartyFlashOverlay',
+'clickTagHostedFlashOverlay',
+'clickTag3rdPartyFlashOverlay',
+'VPAIDHostedFlashOverlay',
+'VPAID3rdPartyFlashOverlay',
+'VPAIDHostedVideo',
+'VPAID3rdPartyVideo'
+];
+
+document.write('<br><br><br>');
+for (var i=0; i<arr.length; i++) {
+  document.write('<a href="' + (arr[i].indexOf('Overlay')!=-1 ? 'overlay' : 'video') + '.html?'+arr[i]+'">See ad for ' + arr[i] + '</a><br>' );
+}
+
+
+for (var i=0; i<arr.length; i++) {
+  // http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F5251606%2FLinearAndNonLinearVastRedirect&ciu_szs=&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=[referrer_url]&correlator=[timestamp]
+  //[referrer_url]&correlator=[timestamp]
+  document.write('<a href="http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F5251606%2F'+arr[i]+'&ciu_szs=&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=http:%2F%2Fwww.flashtogether.com%2Fyoavzibin%2Findex.html&correlator='+(14826+ Math.floor(Math.random()*10000) + i) + '">VAST response for ' + arr[i] + '</a><br>' );
+}
+</script>
+
+
+</body>
+</html>
+

@@ -1,0 +1,93 @@
+<html>
+<head>
+</head>
+
+<body>
+
+<div id="clickTrackingOverlay">clickTrackingOverlay</div>
+<br>
+<video id="videoElement" width="640" height="480"/>
+
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+if (!window.console) console = {};
+console.log = console.log || function(){};
+
+
+  var inventoryName = window.location.search.substring(1);
+  
+  google.setOnLoadCallback(onSdkLoaded);
+  google.load("ima", "1");
+
+  var adsManager;
+  var adsLoader;
+  function onSdkLoaded() {
+    // Create an ads loader instance.
+    adsLoader = new google.ima.AdsLoader();
+    // Listen and respond to ads loaded and error events.
+    adsLoader.addEventListener(
+        google.ima.AdsLoadedEvent.Type.ADS_LOADED,
+        onAdsLoaded,
+        false);
+    adsLoader.addEventListener(
+        google.ima.AdErrorEvent.Type.AD_ERROR,
+        onError,
+        false);
+    // Request video ads.
+    adsLoader.requestAds({adTagUrl: "http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F5251606%2F"+inventoryName+"&ciu_szs=&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=[referrer_url]&correlator=[timestamp]",
+                          adType: 'video'});
+  }
+  
+  function onError(event) {
+    window.alert('onError='+event);
+    console.log(event);
+  }
+  function onAdError(event) {
+    window.alert('onAdError='+event);
+    console.log(event);
+  }
+  
+  
+
+  function onAdsLoaded(adsLoadedEvent) {
+    // Get the ads manager
+    adsManager = adsLoadedEvent.getAdsManager();
+    adsManager.addEventListener(google.ima.AdErrorEvent.Type.AD_ERROR, onAdError);
+
+    // Listen and respond to events which require you to pause/resume content
+    adsManager.addEventListener(
+        google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED,
+        onPauseRequested);
+    adsManager.addEventListener(
+        google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED,
+        onResumeRequested);
+
+    // Set a visual element on which clicks should be tracked for video ads
+    adsManager.setClickTrackingElement(clickTrackingOverlay);
+    try {
+      // Call play to start showing the ad.
+      adsManager.play(videoElement);
+    } catch (adError) {
+      // An error may be thrown if there was a problem with the VAST response.
+      window.alert('adError='+adError);
+      console.log(adError);
+    }
+  }
+
+  function onPauseRequested() {
+    videoElement.pause();
+    // Setup UI for showing ads (e.g. display ad timer countdown,
+    // disable seeking, etc.)
+    // setupUIForAd();
+  }
+
+  function onResumeRequested() {
+    // Setup UI back for showing content.
+    // setupUIForContent();
+    videoElement.play();
+  }
+</script>
+
+
+</body>
+</html>

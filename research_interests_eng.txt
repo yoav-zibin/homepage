@@ -1,0 +1,3 @@
+Programming languages and in particular object-oriented programming;
+Compiler optimizations: run-time optimizations, memory optimizations;
+Distributed computation.

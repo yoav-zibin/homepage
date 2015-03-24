@@ -1,0 +1,83 @@
+
+<p class=MsoNormal style='margin-right:-5.15pt;text-align:justify;tab-stops:
+right 446.55pt;mso-layout-grid-align:none;text-autospace:none'>The <i>object oriented
+</i>(OO) paradigm has become the norm for software development. OO languages,
+such as C++, J<span style='font-size:9.5pt'>AVA</span>, E<span
+style='font-size:9.5pt'>IFFEL</span>, and S<span style='font-size:9.5pt'>MALLTALK</span>,
+are used in almost every software project. The OO programming style, and the
+languages that enable it, have acquired an aura of respectability. OO
+programming promotes reusability, extendibility, reliability, and portability.
+All these blessings come however at a <i>cost of runtime efficiency</i>. Better
+<span class=GramE>understanding of this cost, and finding ways to reduce it,
+were</span> the subject of my thesis.</p>
+
+<p class=MsoNormal style='margin-right:-5.15pt;text-align:justify;tab-stops:
+right 446.55pt;mso-layout-grid-align:none;text-autospace:none'>This thesis
+presents our contributions to the following three fundamental problems in the
+runtime environment of OO languages: <b>subtyping tests</b>, <b>message
+dispatching</b> (both single and multiple dispatching), and <b>object layout</b>.
+It is important to note that although the problems take variations in different
+<span class=GramE>languages,</span> these variations are minor in the
+implementation of these languages. The results will therefore be of general
+interest, and applicable to many different languages.</p>
+
+<p class=MsoNormal style='margin-right:-5.15pt;text-align:justify;tab-stops:
+right 446.55pt;mso-layout-grid-align:none;text-autospace:none'>Surprisingly, we
+use our message dispatching techniques in designing the best algorithm for
+deciding <b>isomorphism of simple types</b>, i.e., whether two non-recursive types
+using product- and function-type constructors, are isomorphic under the axioms
+of commutative and associative products, and currying and <span class=SpellE>distributivity</span>
+of functions over products. We show that this problem can be solved in <span
+class=GramE><i><span style='font-family:CMMI12;mso-bidi-font-family:CMMI12'>O</span></i><span
+style='font-family:CMR12;mso-bidi-font-family:CMR12'>(</span></span><span
+class=SpellE><i><span style='font-family:CMMI12;mso-bidi-font-family:CMMI12'>n</span></i></span><i><span
+style='font-family:CMMI12;mso-bidi-font-family:CMMI12'> </span></i><span
+style='font-family:CMR12;mso-bidi-font-family:CMR12'>log</span><sup><span
+style='font-size:8.0pt;font-family:CMR8;mso-bidi-font-family:CMR8'>2</span></sup><span
+style='font-size:8.0pt;font-family:CMR8;mso-bidi-font-family:CMR8'> </span><span
+class=SpellE><i><span style='font-family:CMMI12;mso-bidi-font-family:CMMI12'>n</span></i></span><span
+style='font-family:CMR12;mso-bidi-font-family:CMR12'>) </span>time and <i><span
+style='font-family:CMMI12;mso-bidi-font-family:CMMI12'>O</span></i><span
+style='font-family:CMR12;mso-bidi-font-family:CMR12'>(</span><span
+class=SpellE><i><span style='font-family:CMMI12;mso-bidi-font-family:CMMI12'>n</span></i></span><span
+style='font-family:CMR12;mso-bidi-font-family:CMR12'>) </span>space, where <span
+class=SpellE><i><span style='font-family:CMMI12;mso-bidi-font-family:CMMI12'>n</span></i></span><i><span
+style='font-family:CMMI12;mso-bidi-font-family:CMMI12'> </span></i>is the input
+size. This result improves upon the <span class=GramE><i><span
+style='font-family:CMMI12;mso-bidi-font-family:CMMI12'>O</span></i><span
+style='font-family:CMR12;mso-bidi-font-family:CMR12'>(</span></span><i><span
+style='font-family:CMMI12;mso-bidi-font-family:CMMI12'>n</span></i><sup><span
+style='font-size:8.0pt;font-family:CMR8;mso-bidi-font-family:CMR8'>2</span></sup><span
+style='font-size:8.0pt;font-family:CMR8;mso-bidi-font-family:CMR8'> </span><span
+style='font-family:CMR12;mso-bidi-font-family:CMR12'>log </span><span
+class=SpellE><i><span style='font-family:CMMI12;mso-bidi-font-family:CMMI12'>n</span></i></span><span
+style='font-family:CMR12;mso-bidi-font-family:CMR12'>) </span>time and <i><span
+style='font-family:CMMI12;mso-bidi-font-family:CMMI12'>O</span></i><span
+style='font-family:CMR12;mso-bidi-font-family:CMR12'>(</span><i><span
+style='font-family:CMMI12;mso-bidi-font-family:CMMI12'>n</span></i><sup><span
+style='font-size:8.0pt;font-family:CMR8;mso-bidi-font-family:CMR8'>2</span></sup><span
+style='font-family:CMR12;mso-bidi-font-family:CMR12'>) </span>space bounds of
+the best previous algorithm. We also describe an <span class=GramE><i><span
+style='font-family:CMMI12;mso-bidi-font-family:CMMI12'>O</span></i><span
+style='font-family:CMR12;mso-bidi-font-family:CMR12'>(</span></span><span
+class=SpellE><i><span style='font-family:CMMI12;mso-bidi-font-family:CMMI12'>n</span></i></span><span
+style='font-family:CMR12;mso-bidi-font-family:CMR12'>) </span>time algorithm
+for the<i> linear isomorphism problem</i>, which does not include the
+distributive axiom, thereby improving upon the <i><span style='font-family:
+CMMI12;mso-bidi-font-family:CMMI12'>O</span></i><span style='font-family:CMR12;
+mso-bidi-font-family:CMR12'>(</span><span class=SpellE><i><span
+style='font-family:CMMI12;mso-bidi-font-family:CMMI12'>n</span></i></span><i><span
+style='font-family:CMMI12;mso-bidi-font-family:CMMI12'> </span></i><span
+style='font-family:CMR12;mso-bidi-font-family:CMR12'>log </span><span
+class=SpellE><i><span style='font-family:CMMI12;mso-bidi-font-family:CMMI12'>n</span></i></span><span
+style='font-family:CMR12;mso-bidi-font-family:CMR12'>) </span>time of the best
+previous algorithm for this problem.</p>
+
+<p class=MsoNormal style='margin-right:-5.15pt;text-align:justify;tab-stops:
+right 446.55pt;mso-layout-grid-align:none;text-autospace:none'>The above
+contributions were published in five conference papers, two of which were
+extended and submitted to a journal.<span style='font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoCommentText style='text-align:justify'><span lang=HE dir=RTL><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=HE dir=RTL><o:p>&nbsp;</o:p></span></p>

@@ -1,0 +1,148 @@
+<html>
+<head>
+<script language='JavaScript'>
+function assignDIV(arr,divElem) {
+	for(var i=0; i<arr.length; i++)
+		//arr[i] = "<li><a href='" + arr[i] + "'>" + arr[i] + "</a>";
+		arr[i] = "<li><SPAN style='background-color: #FFFF00'>" + arr[i] + "</SPAN>";
+	divElem.innerHTML = arr.join("\n");
+}
+
+var inh3D = new Array("cecil-multi.inh3","dylan-multi.inh3","methods.cecil-multi.inh3","methods.dylan-multi.inh3");
+//"vtbl.inh4","java.inh4","v1-set.inh4","v1-stream.inh4","v1-magnitude.inh4","v1-collection.inh4","v1-visualcomponent.inh4","v1-object-nometa.inh4",
+var inh4D = new Array("visualworks1.inh4","visualworks2.inh4","digitalk2.inh4","digitalk3.inh4","visualage2.kern.inh4","visualage2.all.inh4","nextstep.inh4","self-system.inh4","et.inh4","unidraw-interviews.inh4","lov-object-editor.inh4","geode.inh4");
+var inh5D = new Array("Corba.inh5","HotJava.inh5","IBM-SF-samples.inh5","IBM-XML.inh5","jdk1.3.1.inh5","Orbacus.inh5","Orbacus-test.inh5","Orbix.inh5");
+var inh6D = new Array("cecil-.inh6","cecil2.inh6","harlequin.inh6","marlais.inh6","tigukat.inh6","vor3.inh6","vortex3.inh6");
+
+var statistics
+</script>
+</head>
+<body onLoad="assignDIV(inh3D,inh3); assignDIV(inh4D,inh4); assignDIV(inh5D,inh5); assignDIV(inh6D,inh6);" >
+
+<center>
+<h2>Single Dispatching Benchmarks</h2>
+<b>Created by <A href="mailto:yoav@zibin.net">Yoav Zibin</A> and
+	<A href="mailto:yogi@cs.technion.ac.il">Yossi Gil</A></b>
+</center>
+<br>
+	
+<A href="subtyping-benchmarks.html">Subtyping Tests (or Type Inclusion) Benchmarks</A><br>
+
+All dispatching benchmarks in <A href="COU-dispatching-benchmarks.zip">COU</A>/<A href="COMPACT-dispatching-benchmarks.zip">COMPACT</A> format,
+click <A href="benchmarks-format.html">here</A> for format explanations<br>
+
+
+The constraints on all formats are:
+<OL>
+<li>The hierarchy has a single root.
+<li>Types are given in a topological order.
+<LI>NO transitive edges, i.e., we only write the direct parents of each type.
+<li>Method families are always of size greater than 1 (no degenerate method families).
+<li>NO Ambiguities! We assumed method families are 
+  augmented with ambiguity resolvers.   
+</OL>
+
+<br><br>
+
+
+<h3>Concerning Multiple-Dispatching</h3>
+The best known multi-dispatching techniques (good test time, and reasonable space requirements) are called:
+	<A href="http://citeseer.nj.nec.com/330853.html">
+	<b>S</b>ingle <b>R</b>eciever <b>P</b>rojections (SRP)</A> 
+	and
+	<A href="http://www.acm.org/pubs/citations/proceedings/oops/191080/p244-amiel/#abstract">
+	<b>C</b>ompressed <b>N</b>-dimensional dispatch <b>T</b>ables (CNT)</A>
+	(also <A href="http://www.cs.dartmouth.edu/reports/abstracts/TR2001-404/">here</A>,
+	and <A href="http://www.acm.org/pubs/citations/journals/toplas/1998-20-1/p116-dujardin/">here</A>).<br>
+They are both based on the idea of reducing a dispatch of a multi-method of arity <i>k</i>
+	to <i>k</i> single dispatching.
+In CNT the results of these <i>k</i> dispatching are indices used to access a 
+	<i>k</i>-dimensional table (storing method addresses).
+In SRP the results are bitvectors; 
+	we then <i>AND</i> the bitvectors, find the index of the leftmost ON bit,
+	which is then used to access an array of method addresses.
+<br>
+
+In the zip file containing all benchmarks, 
+you'll find the single dispatching projection of the multi-methods
+(which is simply replacing a multi-method of arity <i>k</i> by <i>k</i> mono-methods).
+I removed families with a single member, and also arguments which never change.<br>
+
+
+<h3>The benchmarks</h3>
+<UL>
+	<li>
+		Single-Dispatching.<br>
+		By <A href="mailto:karel@cs.mcgill.ca">Karel Driesen</A><br>
+		Taken from:
+			<A href="http://www.cs.ucsb.edu/oocsb/classheterarchies/">oocsb</A>
+		(The original suffixe was *.cou)<br>
+
+		Used in the article
+			<A href="http://www.cs.ucsb.edu/oocsb/papers/TRCS95-05.html">Minimizing Row Displacement Dispatch Tables</A>
+			in OOPSLA 95<br>
+		
+		<br>
+		Problems with the benchmarks:<br>
+		1) java.inh4: static functions and constructors were added.<br>
+		2) v1-* are small benchamrks extracted from visualworks (Parcplace Smalltalk).<br>
+		3) visualworks2 have lines which are cut in the middle; we fixed it.<br>
+		4) In the following hierarchies, some types implement the same message more than once:
+		visualage2.kern (171), visualage2.all (207), nextstep (1), et(1), 
+		unidraw-interviews (163), geode (12).<br>
+		5) I removed families with a single member; 
+			In visualage2.all there were 10875 removed families.<br>
+		6) When calculating the average number of parents, one need to perform transitive reduction.
+			That wasn't done by Driesen et al.<br>
+		7) I always added a root when the hierarchy had several roots.<br>
+		8) I added extra methods to resolve ambiguities:
+			lov-object-editor (97), geode (444), self-system (1).<br>
+		As a result the statistics on those benchmark slightly vary from those found in the article,
+		and in the files themselves.<br>
+		
+		<OL>
+			<div ID='inh4'></div>
+		</OL>
+	<li>
+		Single-Dispatching.<br>
+		Java benchmarks.<br>
+		<A href="Java-Dispatch-Implementation.zip">My implementation</A> only takes methods which are: not static and (public or protected)<br>
+		
+		The *.class benchmarks (around 90MB) were collected by <A href="mailto:tal@forum2.org">Tal Cohen</A>.
+		<A href="mailto:udekel@cs.technion.ac.il">Uri Dekel</A> also works on these benchmark.
+		<br>
+
+		<OL>
+			<div ID='inh5'></div>
+		</OL>
+
+	<li>
+		Multiple-Dispatching.<br>
+		By <A href="mailto:Eric.Dujardin@sun.com">Eric Dujardin</A><br>
+		Originally from:
+		<A href="http://www.acm.org/pubs/citations/journals/toplas/1998-20-1/p116-dujardin/">
+		Fast algorithms for compressed multimethod dispatch table generation</A>
+		then Eric sent the newest version to me.<br>
+		
+		<OL>
+			<div ID='inh3'></div>
+		</OL>
+	<li>
+		Multiple-Dispatching.<br>
+		By <A href="mailto:wade@csd.uwo.ca">Wade Holst</A><br>
+		Related people are: <A href="mailto:yuri@cs.ualberta.ca">Yuri Leontiev</A>
+		and <A href="mailto:chambers@cs.washington.edu">Craig Chambers</A><br>
+
+		The files format is:<br>
+		&nbsp;&nbsp;	CA <i>class</i> <i>parents</i><br>
+		&nbsp;&nbsp;	MA <i>method</i> <i>class1</i>,<i>class2</i>,...<br>
+		&nbsp;&nbsp;	Some files might use BA instead of MA (they mean the same thing).<br>
+
+		<OL>
+			<div ID='inh6'></div>
+		</OL></li>
+	
+</UL>
+
+</body>
+</html>
